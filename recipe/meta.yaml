@@ -51,7 +51,7 @@ test:
   commands:
     - conda smithy --help
     - conda-smithy --version
-    - pytest -vvvv
+    - GIT_AUTHOR_NAME=test GIT_AUTHOR_EMAIL=test@test.local pytest -vvvv
   source_files:
     - tests/*
 
