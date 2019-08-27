@@ -41,12 +41,15 @@ requirements:
     - conda-forge-pinning
 
 test:
+  requires:
+    - pytest
   imports:
     - conda_smithy
     - conda_smithy.ci_register
     - conda_smithy.configure_feedstock
   commands:
     - conda smithy --help
+    - pytest -vvvv
 
 about:
   home: https://github.com/conda-forge/conda-smithy
