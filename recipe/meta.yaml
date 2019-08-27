@@ -51,7 +51,9 @@ test:
   commands:
     - conda smithy --help
     - conda-smithy --version
-    - GIT_AUTHOR_NAME=test GIT_AUTHOR_EMAIL=test@test.local pytest -vvvv
+    - if ! [[ $(git config --get user.name) ]]; then git config --global user.name "Testy McTest"; fi
+    - if ! [[ $(git config --get user.email) ]]; then git config --global user.email "tmactest@test.org"; fi
+    - pytest -vvvv
   source_files:
     - tests/*
 
