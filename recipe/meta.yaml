@@ -1,17 +1,18 @@
+{% set name = "conda-smithy" %}
 {% set version = "3.4.1" %}
 
 package:
-  name: conda-smithy
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/conda-forge/conda-smithy/releases/download/v{{ version }}/conda-smithy-{{ version }}.tar.gz
+  url: https://github.com/conda-forge/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 073038fd08a0a29887f20445b13d6a9ed84dfeacf1324a2aacbac9d490905a00
   patches:
     - 1102.diff
 
 build:
-  number: 1
+  number: 2
   noarch: python
   script:
     - "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
@@ -49,7 +50,10 @@ test:
     - conda_smithy.configure_feedstock
   commands:
     - conda smithy --help
+    - conda-smithy --version
     - pytest -vvvv
+  source_files:
+    - tests/*
 
 about:
   home: https://github.com/conda-forge/conda-smithy
